@@ -2,6 +2,8 @@
 # Define Game parameters
 # ~~~~~~~~~~~~~~~~~~~~~~
 
+turns = 0
+
 player = {
     "name": "",
     "money": 0,
@@ -111,16 +113,19 @@ def goToShop():
     # If they do not have enough money
     else:
         print(
-            f"\n😭 You are too broke!\nCome back when you have {toolShop[choice - 1]['cost'] - player['money']}\n")
+            f"\n😭 You are too broke!\nCome back when you have ${toolShop[choice - 1]['cost'] - player['money']}\n")
 
 
 # To mow or not to mow...
 def dailyChoice():
+    # Access variable outside this scope
+    global turns
     print(f"\nYou have ${player['money']} to your name.")
     choice = input(
         f"What would you like to do today?\n\t1. Mow the lawn with your {currentTool['name']}\n\t2. Go to the tool shop\n\t3. Open Toolbag\n\tQ. EXIT: ")
     # Mow the lawn
     if choice == "1":
+        turns += 1
         player["money"] += currentTool["profit"]
     elif choice == "2":
         goToShop()
@@ -137,8 +142,10 @@ def dailyChoice():
 def exitGame():
     if player["name"] != "":
         print(
-            f"Thanks for playing, {player['name']}!\n\nHere are your final stats:\n\tMoney: ${player['money']}\n\tTools:")
-
+            f"\nThanks for playing, {player['name']}!\n\nHere are your final stats:\n\tMoney: ${player['money']}\n\tTurns: {turns}\n\tTools:")
+        for tool in player["toolBag"]:
+            print(f"\t\t- {tool['name']}")
+    # If user never played the game from the first prompt
     else:
         print("See you later!")
     exit()
@@ -149,6 +156,7 @@ def exitGame():
 # ~~~~~~~~~~~~~~
 getName()
 
+# Game loop
 while player["money"] <= 1000 or currentTool['name'] != "drone mower":
     dailyChoice()
 
