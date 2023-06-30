@@ -35,7 +35,7 @@ toolShop = [
         "profit": 100
     },
     {
-        "name": "team of students",
+        "name": "drone mower",
         "cost": 500,
         "profit": 250
     },
@@ -63,8 +63,13 @@ def getName():
 
 def goToShop():
     # I want an index so I use the range method along with the len method
+    print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nWelcome to the Tool Shop!\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
+    print("What would you like to purchase?\n")
+    # Loop through tool shop and print the options
     for i in range(len(toolShop)):
-        print(toolShop[i])
+        print(
+            f"{i + 1}. {toolShop[i]['name']} - Profit: {toolShop[i]['profit']} - Cost: {toolShop[i]['cost']}")
+    # choice = input(toolShop[i])
 
 
 def dailyChoice():
