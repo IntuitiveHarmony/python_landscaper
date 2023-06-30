@@ -12,6 +12,8 @@ player = {
         }
     ]
 }
+currentTool = player["toolBag"][0]
+
 
 toolShop = [
     {
@@ -93,7 +95,7 @@ def dailyChoice():
         f"What would you like to do today?\n\t1. Mow the lawn with your {player['toolBag'][0]['name']}\n\t2. Go to the tool shop\n\tQ. EXIT: ")
     # Mow the lawn
     if choice == "1":
-        player["money"] += player["toolBag"][0]["profit"]
+        player["money"] += currentTool["profit"]
     elif choice == "2":
         goToShop()
     elif choice.lower() == "q":
