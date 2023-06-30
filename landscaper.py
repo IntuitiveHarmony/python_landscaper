@@ -29,7 +29,7 @@ toolShop = [
 def getName():
     playGame = input("Would you like to play a game? Y or N: ")
     if playGame.lower() == 'y':
-        # Get the players name
+        # Get the players name set it to our dictionary key value
         player["name"] = input("Please enter your name: ")
     elif playGame.lower() == 'n':
       # Exit conditional
@@ -44,10 +44,15 @@ def getName():
 def dailyChoice():
     print(f"You have ${player['money']} to your name.")
     choice = input(
-        f"What would you like to do today?\n\t1. Mow the lawn with your {player['toolBag'][0]['name']}")
+        f"What would you like to do today?\n\t1. Mow the lawn with your {player['toolBag'][0]['name']}\n\tQ. EXIT")
 
     if choice == "1":
         player["money"] += player["toolBag"][0]["profit"]
+    elif choice.lower() == "q":
+        print("Thanks for playing!")
+        exit()
+    else:
+        print("\n!!!\tPlease enter 1, 2, 3 or Q\t!!!\n")
 
 
 # ~~~~~~~~~~~~~~
