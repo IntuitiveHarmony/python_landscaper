@@ -64,12 +64,17 @@ def getName():
 def goToShop():
     # I want an index so I use the range method along with the len method
     print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nWelcome to the Tool Shop!\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
-    print("What would you like to purchase?\n")
     # Loop through tool shop and print the options
     for i in range(len(toolShop)):
         print(
-            f"{i + 1}. {toolShop[i]['name']} - Profit: {toolShop[i]['profit']} - Cost: {toolShop[i]['cost']}")
-    # choice = input(toolShop[i])
+            f"{i + 1}. {toolShop[i]['name']} - Profit: ${toolShop[i]['profit']} - Cost: ${toolShop[i]['cost']}")
+    # Convert choice to an int so you can target list elements
+    choice = int(input("What would you like to purchase?: "))
+
+    # Make sure array isn't empty
+    if choice <= len(toolShop):
+        selectedTool = toolShop[choice - 1]
+        print(selectedTool)
 
 
 def dailyChoice():
