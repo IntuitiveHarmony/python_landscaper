@@ -63,6 +63,21 @@ def getName():
         getName()
 
 
+def swapTools():
+    # Access variable outside this scope
+    global currentTool
+    print("\n~~~~~~~~~~~TOOLBAG~~~~~~~~~~~~~~~")
+    # Loop through toolbag
+    for i in range(len(player["toolBag"])):
+        print(
+            f"{i + 1}. {player['toolBag'][i]['name']} - Profit ${player['toolBag'][i]['profit']}")
+    print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    # Change choce from string to int
+    choice = int(input("\nPick a tool from your kit: "))
+    # Swap the current tool with the players choice
+    currentTool = player['toolBag'][choice - 1]
+
+
 def goToShop():
     # Access variable outside this scope
     global currentTool
@@ -92,6 +107,7 @@ def goToShop():
         currentTool = toolShop[choice - 1]
         # Remove tool from shop
         del toolShop[choice - 1]
+    # Exit the shop
     elif choice == 0:
         dailyChoice()
     # If they do not have enough money
@@ -110,6 +126,8 @@ def dailyChoice():
         player["money"] += currentTool["profit"]
     elif choice == "2":
         goToShop()
+    elif choice == "3":
+        swapTools()
     elif choice.lower() == "q":
         # put this into a function later
         print("Thanks for playing!")
