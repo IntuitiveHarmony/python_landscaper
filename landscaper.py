@@ -79,8 +79,13 @@ def goToShop():
     choice = int(input("\nWhat would you like to purchase?: "))
 
     # Check for funds
+    # If they are suffucient
     if toolShop[choice - 1]["cost"] <= player["money"]:
-        print("you can buy this")
+        # Subtract cost from player funds
+        player["money"] -= toolShop[choice - 1]["cost"]
+        # Put tool in tool bag
+        player["toolBag"] += [toolShop[choice - 1]]
+        print(player["toolBag"])
     else:
         print(
             f"\n😭 You are too broke!\nCome back when you have {toolShop[choice - 1]['cost'] - player['money']}\n")
