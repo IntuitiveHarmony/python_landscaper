@@ -54,11 +54,10 @@ def getName():
         # Get the players name set it to our dictionary key value
         player["name"] = input("Please enter your name: ")
     elif playGame.lower() == 'n':
-      # Exit conditional
-        print("See you later!")
-        exit()
+        # Exit conditional
+        exitGame()
     else:
-      # Validation
+        # Validation
         print("\n!!!\tPlease enter Y or N\t!!!\n")
         getName()
 
@@ -127,13 +126,22 @@ def dailyChoice():
         goToShop()
     elif choice == "3":
         swapTools()
+    # Quit game
     elif choice.lower() == "q":
-        # put this into a function later
-        print("Thanks for playing!")
-        exit()
+        exitGame()
     # Validate
     else:
         print("\n!!!\tPlease enter 1, 2, 3 or Q\t!!!\n")
+
+
+def exitGame():
+    if player["name"] != "":
+        print(
+            f"Thanks for playing, {player['name']}!\n\nHere are your final stats:\n\tMoney: ${player['money']}\n\tTools:")
+
+    else:
+        print("See you later!")
+    exit()
 
 
 # ~~~~~~~~~~~~~~
@@ -143,3 +151,5 @@ getName()
 
 while player["money"] <= 1000 or currentTool['name'] != "drone mower":
     dailyChoice()
+
+exitGame()
