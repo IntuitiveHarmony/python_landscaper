@@ -14,31 +14,31 @@ player = {
 }
 
 toolShop = [
-    # {
-    #     "name": "rusty scissors",
-    #     "cost": 5,
-    #     "profit": 5
-    # },
-    # {
-    #     "name": "push lawnmower",
-    #     "cost": 25,
-    #     "profit": 25
-    # },
-    # {
-    #     "name": "fancy lawnmower",
-    #     "cost": 50,
-    #     "profit": 50
-    # },
-    # {
-    #     "name": "riding mower",
-    #     "cost": 200,
-    #     "profit": 100
-    # },
-    # {
-    #     "name": "drone mower",
-    #     "cost": 500,
-    #     "profit": 250
-    # },
+    {
+        "name": "rusty scissors",
+        "cost": 5,
+        "profit": 5
+    },
+    {
+        "name": "push lawnmower",
+        "cost": 25,
+        "profit": 25
+    },
+    {
+        "name": "fancy lawnmower",
+        "cost": 50,
+        "profit": 50
+    },
+    {
+        "name": "riding mower",
+        "cost": 200,
+        "profit": 100
+    },
+    {
+        "name": "drone mower",
+        "cost": 500,
+        "profit": 250
+    },
 ]
 
 # ~~~~~~~~~~~~~~~~
@@ -76,8 +76,15 @@ def goToShop():
     # Convert choice to an int so you can target list elements
     choice = int(input("What would you like to purchase?: "))
 
+    # Check for funds
+    if toolShop[choice - 1]["cost"] <= player["money"]:
+        print("you can buy this")
+    else:
+        print("You are too broke!")
     selectedTool = toolShop[choice - 1]
     print(selectedTool)
+
+# To mow or not to mow...
 
 
 def dailyChoice():
