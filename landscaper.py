@@ -74,24 +74,24 @@ def goToShop():
         print("Sorry, we are sold out!")
         dailyChoice()
     # Convert choice to an int so you can target list elements
-    choice = int(input("What would you like to purchase?: "))
+    choice = int(input("\nWhat would you like to purchase?: "))
 
     # Check for funds
     if toolShop[choice - 1]["cost"] <= player["money"]:
         print("you can buy this")
     else:
-        print("You are too broke!")
+        print(
+            f"\n😭 You are too broke!\nCome back when you have {toolShop[choice - 1]['cost'] - player['money']}\n")
     selectedTool = toolShop[choice - 1]
     print(selectedTool)
 
+
 # To mow or not to mow...
-
-
 def dailyChoice():
     print(f"You have ${player['money']} to your name.")
     choice = input(
         f"What would you like to do today?\n\t1. Mow the lawn with your {player['toolBag'][0]['name']}\n\t2. Go to the tool shop\n\tQ. EXIT: ")
-
+    # Mow the lawn
     if choice == "1":
         player["money"] += player["toolBag"][0]["profit"]
     elif choice == "2":
@@ -100,6 +100,7 @@ def dailyChoice():
         # put this into a function later
         print("Thanks for playing!")
         exit()
+    # Validate
     else:
         print("\n!!!\tPlease enter 1, 2, 3 or Q\t!!!\n")
 
