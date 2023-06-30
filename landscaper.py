@@ -64,6 +64,8 @@ def getName():
 
 
 def goToShop():
+    # Access variable outside this scope
+    global currentTool
     # I want an index so I use the range method along with the len method
     print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nWelcome to the Tool Shop!\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
     # Make sure array isn't empty because we will be removing items
@@ -75,6 +77,7 @@ def goToShop():
     else:
         print("Sorry, we are sold out!")
         dailyChoice()
+    print("0. EXIT SHOP")
     # Convert choice to an int so you can target list elements
     choice = int(input("\nWhat would you like to purchase?: "))
 
@@ -85,9 +88,13 @@ def goToShop():
         player["money"] -= toolShop[choice - 1]["cost"]
         # Put tool in tool bag
         player["toolBag"] += [toolShop[choice - 1]]
+        # Update Current tool
+        currentTool = toolShop[choice - 1]
         # Remove tool from shop
         del toolShop[choice - 1]
-        print(toolShop)
+    elif choice == 0:
+        dailyChoice()
+    # If they do not have enough money
     else:
         print(
             f"\n😭 You are too broke!\nCome back when you have {toolShop[choice - 1]['cost'] - player['money']}\n")
@@ -95,9 +102,9 @@ def goToShop():
 
 # To mow or not to mow...
 def dailyChoice():
-    print(f"You have ${player['money']} to your name.")
+    print(f"\nYou have ${player['money']} to your name.")
     choice = input(
-        f"What would you like to do today?\n\t1. Mow the lawn with your {player['toolBag'][0]['name']}\n\t2. Go to the tool shop\n\tQ. EXIT: ")
+        f"What would you like to do today?\n\t1. Mow the lawn with your {currentTool['name']}\n\t2. Go to the tool shop\n\tQ. EXIT: ")
     # Mow the lawn
     if choice == "1":
         player["money"] += currentTool["profit"]
@@ -117,7 +124,5 @@ def dailyChoice():
 # ~~~~~~~~~~~~~~
 getName()
 
-while player["money"] <= 20:
+while player["money"] <= 1000:
     dailyChoice()
-    # print(
-    #     f"Hello {player['name']} you are using your {player['toolBag'][0]['name']}")
