@@ -120,7 +120,7 @@ def goToShop():
 def dailyChoice():
     print(f"\nYou have ${player['money']} to your name.")
     choice = input(
-        f"What would you like to do today?\n\t1. Mow the lawn with your {currentTool['name']}\n\t2. Go to the tool shop\n\tQ. EXIT: ")
+        f"What would you like to do today?\n\t1. Mow the lawn with your {currentTool['name']}\n\t2. Go to the tool shop\n\t3. Open Toolbag\n\tQ. EXIT: ")
     # Mow the lawn
     if choice == "1":
         player["money"] += currentTool["profit"]
@@ -142,5 +142,5 @@ def dailyChoice():
 # ~~~~~~~~~~~~~~
 getName()
 
-while player["money"] <= 1000:
+while player["money"] <= 1000 or currentTool['name'] != "drone mower":
     dailyChoice()
