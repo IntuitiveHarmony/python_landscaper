@@ -13,9 +13,17 @@ player = {
     ]
 }
 
-# ~~~~~~~~~
-# Functions
-# ~~~~~~~~~
+toolShop = [
+    {
+        "name": "rusty scissors",
+        "cost": 5,
+        "profit": 5
+    }
+]
+
+# ~~~~~~~~~~~~~~~~
+# Define Functions
+# ~~~~~~~~~~~~~~~~
 
 
 def getName():
@@ -33,7 +41,21 @@ def getName():
         getName()
 
 
+def dailyChoice():
+    print(f"You have ${player['money']} to your name.")
+    choice = input(
+        f"What would you like to do today?\n\t1. Mow the lawn with your {player['toolBag'][0]['name']}")
+
+    if choice == "1":
+        player["money"] += player["toolBag"][0]["profit"]
+
+
+# ~~~~~~~~~~~~~~
+# Call Functions
+# ~~~~~~~~~~~~~~
 getName()
 
-print(
-    f"Hello {player['name']} you are using your {player['toolBag'][0]['name']}")
+while player["money"] <= 10:
+    dailyChoice()
+    # print(
+    #     f"Hello {player['name']} you are using your {player['toolBag'][0]['name']}")
