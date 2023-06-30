@@ -14,31 +14,31 @@ player = {
 }
 
 toolShop = [
-    {
-        "name": "rusty scissors",
-        "cost": 5,
-        "profit": 5
-    },
-    {
-        "name": "push lawnmower",
-        "cost": 25,
-        "profit": 25
-    },
-    {
-        "name": "fancy lawnmower",
-        "cost": 50,
-        "profit": 50
-    },
-    {
-        "name": "riding mower",
-        "cost": 200,
-        "profit": 100
-    },
-    {
-        "name": "drone mower",
-        "cost": 500,
-        "profit": 250
-    },
+    # {
+    #     "name": "rusty scissors",
+    #     "cost": 5,
+    #     "profit": 5
+    # },
+    # {
+    #     "name": "push lawnmower",
+    #     "cost": 25,
+    #     "profit": 25
+    # },
+    # {
+    #     "name": "fancy lawnmower",
+    #     "cost": 50,
+    #     "profit": 50
+    # },
+    # {
+    #     "name": "riding mower",
+    #     "cost": 200,
+    #     "profit": 100
+    # },
+    # {
+    #     "name": "drone mower",
+    #     "cost": 500,
+    #     "profit": 250
+    # },
 ]
 
 # ~~~~~~~~~~~~~~~~
@@ -64,17 +64,20 @@ def getName():
 def goToShop():
     # I want an index so I use the range method along with the len method
     print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nWelcome to the Tool Shop!\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n")
-    # Loop through tool shop and print the options
-    for i in range(len(toolShop)):
-        print(
-            f"{i + 1}. {toolShop[i]['name']} - Profit: ${toolShop[i]['profit']} - Cost: ${toolShop[i]['cost']}")
+    # Make sure array isn't empty because we will be removing items
+    if len(toolShop) > 0:
+        # Loop through tool shop and print the options
+        for i in range(len(toolShop)):
+            print(
+                f"{i + 1}. {toolShop[i]['name']} - Profit: ${toolShop[i]['profit']} - Cost: ${toolShop[i]['cost']}")
+    else:
+        print("Sorry, we are sold out!")
+        dailyChoice()
     # Convert choice to an int so you can target list elements
     choice = int(input("What would you like to purchase?: "))
 
-    # Make sure array isn't empty
-    if choice <= len(toolShop):
-        selectedTool = toolShop[choice - 1]
-        print(selectedTool)
+    selectedTool = toolShop[choice - 1]
+    print(selectedTool)
 
 
 def dailyChoice():
