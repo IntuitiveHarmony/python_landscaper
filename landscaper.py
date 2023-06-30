@@ -91,14 +91,16 @@ def goToShop():
                 f"{i + 1}. {toolShop[i]['name']} - Profit: ${toolShop[i]['profit']} - Cost: ${toolShop[i]['cost']}")
     else:
         print("Sorry, we are sold out!")
-        dailyChoice()
     print("0. EXIT SHOP")
     # Convert choice to an int so you can target list elements
     choice = int(input("\nWhat would you like to purchase?: "))
 
-    # Check for funds
+    # Exit the shop
+    if choice == 0:
+        dailyChoice()
+    # Buy tool/ Check for funds
     # If they are suffucient
-    if toolShop[choice - 1]["cost"] <= player["money"]:
+    elif toolShop[choice - 1]["cost"] <= player["money"]:
         # Subtract cost from player funds
         player["money"] -= toolShop[choice - 1]["cost"]
         # Put tool in tool bag
@@ -107,9 +109,6 @@ def goToShop():
         currentTool = toolShop[choice - 1]
         # Remove tool from shop
         del toolShop[choice - 1]
-    # Exit the shop
-    elif choice == 0:
-        dailyChoice()
     # If they do not have enough money
     else:
         print(
