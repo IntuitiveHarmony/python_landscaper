@@ -85,12 +85,12 @@ def goToShop():
         player["money"] -= toolShop[choice - 1]["cost"]
         # Put tool in tool bag
         player["toolBag"] += [toolShop[choice - 1]]
-        print(player["toolBag"])
+        # Remove tool from shop
+        del toolShop[choice - 1]
+        print(toolShop)
     else:
         print(
             f"\n😭 You are too broke!\nCome back when you have {toolShop[choice - 1]['cost'] - player['money']}\n")
-    selectedTool = toolShop[choice - 1]
-    print(selectedTool)
 
 
 # To mow or not to mow...
