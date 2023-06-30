@@ -18,7 +18,27 @@ toolShop = [
         "name": "rusty scissors",
         "cost": 5,
         "profit": 5
-    }
+    },
+    {
+        "name": "push lawnmower",
+        "cost": 25,
+        "profit": 25
+    },
+    {
+        "name": "fancy lawnmower",
+        "cost": 50,
+        "profit": 50
+    },
+    {
+        "name": "riding mower",
+        "cost": 200,
+        "profit": 100
+    },
+    {
+        "name": "team of students",
+        "cost": 500,
+        "profit": 250
+    },
 ]
 
 # ~~~~~~~~~~~~~~~~
@@ -41,14 +61,23 @@ def getName():
         getName()
 
 
+def goToShop():
+    # I want an index so I use the range method along with the len method
+    for i in range(len(toolShop)):
+        print(toolShop[i])
+
+
 def dailyChoice():
     print(f"You have ${player['money']} to your name.")
     choice = input(
-        f"What would you like to do today?\n\t1. Mow the lawn with your {player['toolBag'][0]['name']}\n\tQ. EXIT")
+        f"What would you like to do today?\n\t1. Mow the lawn with your {player['toolBag'][0]['name']}\n\t2. Go to the tool shop\n\tQ. EXIT: ")
 
     if choice == "1":
         player["money"] += player["toolBag"][0]["profit"]
+    elif choice == "2":
+        goToShop()
     elif choice.lower() == "q":
+        # put this into a function later
         print("Thanks for playing!")
         exit()
     else:
@@ -60,7 +89,7 @@ def dailyChoice():
 # ~~~~~~~~~~~~~~
 getName()
 
-while player["money"] <= 10:
+while player["money"] <= 20:
     dailyChoice()
     # print(
     #     f"Hello {player['name']} you are using your {player['toolBag'][0]['name']}")
